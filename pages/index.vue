@@ -10,7 +10,7 @@ const items = ["Placeholder", "Placeholder", "Placeholder"]
           <h2 class="text-2xl">Hi, You may know me as</h2>
           <h1 class="h-32 text-[10rem] leading-[.7] text-primary">Willi</h1>
         </div>
-        <img class="ml-6 rounded-lg" width="256" height="256" src="/milo.jpg" alt="pfp" />
+        <img class="ml-6 h-64 w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
       </div>
       <h3 class="mt-6 text-center text-xl">You should check these out</h3>
       <div class="mt-8 flex flex-row justify-evenly">
