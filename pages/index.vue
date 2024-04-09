@@ -17,11 +17,11 @@ const socials = [
       <div class="mt-32 flex flex-row justify-center">
         <div class="flex flex-col justify-center">
           <h2 class="text-2xl">Hi, you may know me as</h2>
-          <h1 class="h-32 text-[10rem] leading-[.7] text-primary">Willi</h1>
+          <h1 class="h-32 text-[10rem] font-bold leading-[.7] text-primary">Willi</h1>
         </div>
         <img class="ml-6 h-64 w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
       </div>
-      <div class="mt-6 flex flex-col items-center justify-center gap-6">
+      <div class="mt-8 flex flex-col items-center justify-center gap-6">
         <div class="flex flex-row justify-center gap-8">
           <template v-for="item in socials">
             <a
