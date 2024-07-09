@@ -5,17 +5,12 @@ const socials = [
     icon: "/discord.svg",
   },
   {
-    href: "/spotify",
-    icon: "/spotify.svg"
-  },
-  {
     href: "https://github.com/itswilliboy",
     icon: "/github.svg",
   },
 ]
 
-const tracks = await $fetch("/api/spotify?limit=1", { headers: { "Cache-Control": "max-age=30" } })
-const track = tracks[0]
+const { status, data: tracks } = await useLazyFetch("/api/spotify?limit=1", { headers: { "Cache-Control": "max-age=30" } })
 </script>
 
 <template>
@@ -23,13 +18,13 @@ const track = tracks[0]
     <div class="flex flex-col">
       <div class="mt-32 flex flex-row justify-center">
         <div class="flex flex-col justify-center">
-          <h2 class="text-2xl">Hi, you may know me as</h2>
-          <h1 class="h-32 text-[10rem] font-bold leading-[.7] text-primary">Willi</h1>
+          <h2 class="text-md md:text-2xl">Hi, you may know me as</h2>
+          <h1 class="h-32 text-[6rem] md:text-[10rem] font-bold leading-[.8] md:leading-[.7] text-primary">Willi</h1>
         </div>
-        <img class="ml-6 h-64 w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
+        <img class="ml-6 h-32 w-32 md:h-64 md:w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
       </div>
       <div class="mt-8 flex flex-col items-center justify-center gap-6">
-        <Track :track="track" to-page />
+        <Track :track="tracks[0]" to-page v-show="status === 'success'" />
         <div class="flex flex-row justify-center gap-8">
           <template v-for="item in socials">
             <a :href="item.href" :target="item.target || '_blank'"

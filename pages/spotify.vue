@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const getData = async (): Promise<Track[]> => {
-    let resp = await $fetch("/api/spotify?limit=24", { headers: { "Cache-Control": "max-age=30" } })
-    return resp
+    let { data } = await useFetch("/api/spotify", { headers: { "Cache-Control": "max-age=30" } })
+    return data.value!
 }
 
 const tracks = ref<Track[]>(await getData())
