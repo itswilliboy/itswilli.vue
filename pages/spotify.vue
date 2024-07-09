@@ -1,5 +1,12 @@
 <script setup lang="ts">
-let { data: tracks, refresh, status } = useLazyFetch("/api/spotify", { headers: { "Cache-Control": "max-age=30" }, query: { "limit": 24 } })
+
+const getData = async (): Promise<Track[]> => {
+    let { data } = await useFetch("/api/spotify", { headers: { "Cache-Control": "max-age=30" }, query: { "limit": 48 } })
+    return data.value!
+}
+
+let tracks = ref<Track[]>(await getData())
+
 </script>
 
 <template>
@@ -19,13 +26,11 @@ let { data: tracks, refresh, status } = useLazyFetch("/api/spotify", { headers: 
                     </div>
                 </a>
                 <button class="bg-primary p-2 mr-2 font-semibold rounded-lg hover:bg-primary/80 transition-colors"
-                    @click="refresh()">Refresh</button>
+                    @click="getData().then(data => tracks = data)">Refresh</button>
             </div>
             <div class="border-2 border-white/50 w-full rounded-full my-4"></div>
             <div class="flex flex-row flex-wrap gap-4 justify-center overflow-y-auto">
-                <Track :track="track" v-for="track in tracks" :key="track.date?.uts ?? track.name"
-                    v-if="status === 'success'" />
-                <h1 v-else>one second please...</h1>
+                <Track :track="track" v-for="track in tracks" :key="track.date?.uts ?? track.name" />
             </div>
         </div>
     </div>
