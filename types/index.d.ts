@@ -1,5 +1,5 @@
 declare global {
-    interface Track {
+    type Track = {
         artist: {
             "#text": string
         }

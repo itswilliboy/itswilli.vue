@@ -5,10 +5,17 @@ const socials = [
     icon: "/discord.svg",
   },
   {
+    href: "/spotify",
+    icon: "/spotify.svg"
+  },
+  {
     href: "https://github.com/itswilliboy",
     icon: "/github.svg",
   },
 ]
+
+const tracks = await $fetch("/api/spotify?limit=1", { headers: { "Cache-Control": "max-age=30" } })
+const track = tracks[0]
 </script>
 
 <template>
@@ -22,13 +29,11 @@ const socials = [
         <img class="ml-6 h-64 w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
       </div>
       <div class="mt-8 flex flex-col items-center justify-center gap-6">
+        <Track :track="track" to-page />
         <div class="flex flex-row justify-center gap-8">
           <template v-for="item in socials">
-            <a
-              :href="item.href"
-              :target="item.target || '_blank'"
-              class="inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg bg-primary p-4 transition-colors hover:bg-primary/80"
-            >
+            <a :href="item.href" :target="item.target || '_blank'"
+              class="inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg bg-primary p-4 transition-colors hover:bg-primary/80">
               <img :src="item.icon" alt="GitHub logo" class="h-6 w-6" />
             </a>
           </template>
