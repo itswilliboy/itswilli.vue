@@ -10,7 +10,7 @@ const socials = [
   },
 ]
 
-const { status, data: tracks } = await useLazyFetch("/api/spotify?limit=1", { headers: { "Cache-Control": "max-age=30" } })
+const { status, data: tracks } = useLazyFetch("/api/spotify", { headers: { "Cache-Control": "max-age=30" }, query: { "limit": 1 } })
 </script>
 
 <template>

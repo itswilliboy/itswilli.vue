@@ -1,17 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   runtimeConfig: {
     LAST_FM_TOKEN: "",
     public: {
       LAST_FM_USERNAME: "ItsWilliboy",
     }
-  }
+  },
+
+  modules: ["@nuxt/image"]
 })
