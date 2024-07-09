@@ -8,4 +8,10 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    LAST_FM_TOKEN: "",
+    public: {
+      LAST_FM_USERNAME: "ItsWilliboy",
+    }
+  }
 })
