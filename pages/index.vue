@@ -14,25 +14,35 @@ const { status, data: tracks } = useLazyFetch("/api/spotify", { query: { "limit"
 </script>
 
 <template>
-  <div class="flex h-screen w-screen justify-center bg-background font-semibold text-white">
-    <div class="flex flex-col">
-      <div class="mt-32 flex flex-row justify-center">
-        <div class="flex flex-col justify-center">
-          <h2 class="text-md md:text-2xl">Hi, you may know me as</h2>
-          <h1 class="h-32 text-[6rem] md:text-[10rem] font-bold leading-[.8] md:leading-[.7] text-primary">Willi</h1>
+  <div class="overflow-x-hidden">
+    <div class="flex h-screen w-screen justify-center bg-background font-semibold text-white">
+      <div class="flex flex-col">
+        <div class="mt-32 flex flex-row justify-center">
+          <div class="flex flex-col justify-center">
+            <h2 class="text-md md:text-2xl">Hi, you may know me as</h2>
+            <h1 class="h-32 text-[6rem] md:text-[10rem] font-bold leading-[.8] md:leading-[.7] text-primary">Willi</h1>
+          </div>
+          <img class="ml-6 h-32 w-32 md:h-64 md:w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
         </div>
-        <img class="ml-6 h-32 w-32 md:h-64 md:w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
+        <div class="mt-8 flex flex-col items-center justify-center gap-6">
+          <Track :track="tracks[0]" to-page v-show="status === 'success'" class="-mt-8 md:mt-0" />
+          <div class="flex flex-row justify-center gap-8">
+            <div v-for="item in socials">
+              <a :href="item.href" :target="item.target || '_blank'"
+                class="inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg bg-primary p-4 transition-colors hover:bg-primary/80">
+                <img :src="item.icon" alt="GitHub logo" class="h-6 w-6" />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mt-8 flex flex-col items-center justify-center gap-6">
-        <Track :track="tracks[0]" to-page v-show="status === 'success'" class="-mt-8 md:mt-0" />
-        <div class="flex flex-row justify-center gap-8">
-          <template v-for="item in socials">
-            <a :href="item.href" :target="item.target || '_blank'"
-              class="inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg bg-primary p-4 transition-colors hover:bg-primary/80">
-              <img :src="item.icon" alt="GitHub logo" class="h-6 w-6" />
-            </a>
-          </template>
-        </div>
+    </div>
+
+    <div class="bg-background/95 h-32 w-screen justify-center items-center flex">
+      <div class="text-white flex flex-col font-semibold text-center">
+        <p>Made with 💖 in Vue</p>
+        <a href="https://github.com/itswilliboy/itswilli.vue" class="text-primary hover:brightness-150 transition-all"
+          target="_blank">Source</a>
       </div>
     </div>
   </div>
