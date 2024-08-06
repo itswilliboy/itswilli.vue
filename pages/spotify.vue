@@ -34,4 +34,6 @@ let tracks = ref<Track[]>(await getData())
             </div>
         </div>
     </div>
+
+    <Footer />
 </template>
