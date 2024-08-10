@@ -1,11 +1,17 @@
 <script setup lang="ts">
 
-const getData = async (): Promise<Track[]> => {
-    let { data } = await useFetch("/api/spotify", { query: { "limit": 48 } })
-    return data.value!
+type Response = {
+    status: Ref<any>
+    tracks: Ref<Track[]>
 }
 
-let tracks = ref<Track[]>(await getData())
+const getData = async (): Promise<Response> => {
+    const { status, data } = await useLazyFetch("/api/spotify", { query: { "limit": 48 }, server: false })
+    const tracks = data as any
+    return { status, tracks }
+}
+
+let tracks = ref<Response>(await getData())
 
 </script>
 
@@ -25,12 +31,16 @@ let tracks = ref<Track[]>(await getData())
                         <span class="text-xs mt-10 -ml-2 hidden md:block">Powered by LastFM</span>
                     </div>
                 </a>
+                <!-- @vue-ignore -->
                 <button class="bg-primary p-2 mr-2 font-semibold rounded-lg hover:bg-primary/80 transition-colors"
-                    @click="getData().then(data => tracks = data)">Refresh</button>
+                    @click="getData().then(data => tracks = data)">Refresh
+                </button>
             </div>
             <div class="border-2 border-white/50 w-full rounded-full my-4"></div>
             <div class="flex flex-row flex-wrap gap-4 justify-center overflow-y-auto ">
-                <Track :track="track" v-for="track in tracks" :key="track.date?.uts ?? track.name" />
+                <Track :track="track" v-for="track in tracks.tracks" :key="track.date?.uts ?? track.name"
+                    v-if="tracks.status === 'success'" />
+                <div v-else v-for="_ in 48" class="w-72 h-28 bg-white/10 rounded-lg animate-pulse"></div>
             </div>
         </div>
     </div>
