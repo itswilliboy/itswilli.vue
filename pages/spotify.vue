@@ -6,7 +6,7 @@ type Response = {
 }
 
 const getData = async (): Promise<Response> => {
-    const { status, data } = await useLazyFetch("/api/spotify", { query: { "limit": 48 }, server: false })
+    const { status, data } = await useLazyFetch("/api/spotify", { query: { "limit": 48 }, server: false, headers: { "Cache-Control": "max-age=30" } })
     const tracks = data as any
     return { status, tracks }
 }
