@@ -10,7 +10,7 @@ const socials = [
   },
 ]
 
-const { status, data: tracks } = useLazyFetch("/api/spotify", { query: { "limit": 1 } })
+const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { "limit": 1 }, server: false })
 </script>
 
 <template>
@@ -25,7 +25,8 @@ const { status, data: tracks } = useLazyFetch("/api/spotify", { query: { "limit"
           <img class="ml-6 h-32 w-32 md:h-64 md:w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
         </div>
         <div class="mt-8 flex flex-col items-center justify-center gap-6">
-          <Track :track="tracks[0]" to-page v-show="status === 'success'" class="-mt-8 md:mt-0" />
+          <Track :track="tracks[0]" to-page v-if="status === 'success'" class="-mt-8 md:mt-0" />
+          <div v-else class="w-72 h-28 bg-white/10 rounded-lg animate-pulse"></div>
           <div class="flex flex-row justify-center gap-8">
             <div v-for="item in socials">
               <a :href="item.href" :target="item.target || '_blank'"
