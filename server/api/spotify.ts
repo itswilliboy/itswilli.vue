@@ -13,7 +13,8 @@ const getRecentTracks = async (limit: number): Promise<Track[]> => {
 export default defineEventHandler(async e => {
     const query = getQuery(e)
     const limit = Number(query.limit ?? 15)
+    const clamped = Math.max(1, Math.min(limit, 100));
 
-    const tracks = await getRecentTracks(limit)
-    return tracks.slice(0, limit)
+    const tracks = await getRecentTracks(clamped)
+    return tracks.slice(0, clamped)
 })
