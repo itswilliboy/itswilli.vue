@@ -26,7 +26,7 @@ const {
           class="w-max hover:text-red-100 transition-colors"
           title="Last FM">
           <div class="flex flex-row gap-3 items-center">
-            <img src="/milo.jpg" alt="pfp" class="h-[60px] w-[60px] rounded-lg" />
+            <NuxtImg src="/milo.jpg" alt="pfp" class="h-[60px] w-[60px] rounded-lg" />
             <h1 class="text-3xl md:text-6xl font-semibold">My Songs</h1>
             <span class="text-xs mt-10 -ml-2 hidden md:block">Powered by LastFM</span>
           </div>

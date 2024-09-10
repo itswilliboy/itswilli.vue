@@ -29,7 +29,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
             <h2 class="text-md md:text-2xl">Hi, you may know me as</h2>
             <h1 class="h-32 text-[6rem] md:text-[10rem] font-bold leading-[.8] md:leading-[.7] text-primary">Willi</h1>
           </div>
-          <img class="ml-6 h-32 w-32 md:h-64 md:w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
+          <NuxtImg class="ml-6 h-32 w-32 md:h-64 md:w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
         </div>
         <div class="mt-8 flex flex-col items-center justify-center gap-6">
           <Track :track="tracks[0]" to-page v-if="status === 'success'" class="-mt-8 md:mt-0" />
@@ -40,7 +40,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
                 :href="item.href"
                 :target="item.target || '_blank'"
                 class="inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg bg-primary p-4 transition-colors hover:bg-primary/80">
-                <img :src="item.icon" alt="GitHub logo" class="h-6 w-6" />
+                <NuxtImg :src="item.icon" alt="GitHub logo" class="h-6 w-6" />
               </a>
             </div>
           </div>
