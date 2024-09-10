@@ -36,7 +36,7 @@ const items = [
       </div>
       <div class="flex-1 px-10 py-8">
         <ul class="space-y-4">
-          <li v-for="item in  items ">
+          <li v-for="item in items ">
             <div class="flex gap-2 flex-col">
               <h2 class="text-2xl font-semibold underline">{{ item.title }}</h2>
               <p v-html="item.value.replaceAll('~', '<br />')"></p>

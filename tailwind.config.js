@@ -6,7 +6,7 @@ export default {
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./app.vue",
-    "./error.vue",
+    "./error.vue"
   ],
   theme: {
     extend: {
@@ -14,9 +14,9 @@ export default {
         background: "#03071c",
         primary: "#344fdf",
         secondary: "#11268e",
-        accent: "#1338f0",
-      },
-    },
+        accent: "#1338f0"
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 }

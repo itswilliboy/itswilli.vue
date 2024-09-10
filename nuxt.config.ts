@@ -6,14 +6,14 @@ export default defineNuxtConfig({
   postcss: {
     plugins: {
       tailwindcss: {},
-      autoprefixer: {},
-    },
+      autoprefixer: {}
+    }
   },
 
   runtimeConfig: {
     LAST_FM_TOKEN: "",
     public: {
-      LAST_FM_USERNAME: "ItsWilliboy",
+      LAST_FM_USERNAME: "ItsWilliboy"
     }
   },
 
