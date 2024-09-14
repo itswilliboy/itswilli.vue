@@ -24,25 +24,25 @@ const items = [
 </script>
 
 <template>
-  <div class="w-screen h-screen bg-background flex justify-center items-center">
-    <div class="text-white h-5/6 w-[300px] md:w-[500px] bg-white/10 rounded-lg flex flex-col overflow-y-auto">
-      <div class="h-24 justify-center flex items-center flex-col py-4 md:py-0">
-        <h1 class="text-2xl md:text-4xl font-semibold">Harmony Privacy Policy</h1>
+  <div class="flex h-screen w-screen items-center justify-center bg-background">
+    <div class="flex h-5/6 w-[300px] flex-col overflow-y-auto rounded-lg bg-white/10 text-white md:w-[500px]">
+      <div class="flex h-24 flex-col items-center justify-center py-4 md:py-0">
+        <h1 class="text-2xl font-semibold md:text-4xl">Harmony Privacy Policy</h1>
       </div>
       <div class="flex justify-center">
-        <div class="w-4/5 border-2 rounded-lg border-white/50"></div>
+        <div class="w-4/5 rounded-lg border-2 border-white/50"></div>
       </div>
       <div class="flex-1 px-10 py-8">
         <ul class="space-y-4">
           <li v-for="item in items">
-            <div class="flex gap-2 flex-col">
-              <h2 class="text-md md:text-2xl font-semibold underline">{{ item.title }}</h2>
+            <div class="flex flex-col gap-2">
+              <h2 class="text-md font-semibold underline md:text-2xl">{{ item.title }}</h2>
               <p v-html="item.value.replaceAll('~', '<br />')"></p>
             </div>
           </li>
         </ul>
       </div>
-      <p class="text-center pb-2 text-white/50">Harmony is not affiliated with AniList.</p>
+      <p class="pb-2 text-center text-white/50">Harmony is not affiliated with AniList.</p>
     </div>
   </div>
 

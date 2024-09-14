@@ -17,6 +17,30 @@ const socials = [
   }
 ]
 
+const projects = [
+  {
+    name: "itswilli.vue",
+    description: "This site. Built in Vue with Nuxt using TailwindCSS.",
+    href: "https://github.com/itswilliboy/itswilli.vue",
+    colour: "#41B783",
+    icon: "skill-icons:nuxtjs-dark"
+  },
+  {
+    name: "Harmony",
+    description: "Harmony is a multipurpose Discord Bot built in Python using discord.py",
+    href: "https://github.com/itswilliboy/Harmony",
+    colour: "#3573A6",
+    icon: "skill-icons:python-dark"
+  },
+  {
+    name: "images-rust",
+    description: "The backend for i.itswilli.dev, built in Rust with Rocket.",
+    href: "https://github.com/itswilliboy/images-rust",
+    colour: "#DFA484",
+    icon: "skill-icons:rust"
+  }
+]
+
 const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { limit: 1 }, server: false })
 </script>
 
@@ -27,13 +51,13 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
         <div class="mt-32 flex flex-row justify-center">
           <div class="flex flex-col justify-center">
             <h2 class="text-md md:text-2xl">Hi, you may know me as</h2>
-            <h1 class="h-32 text-[6rem] md:text-[10rem] font-bold leading-[.8] md:leading-[.7] text-primary">Willi</h1>
+            <h1 class="h-32 text-[6rem] font-bold leading-[.8] text-primary md:text-[10rem] md:leading-[.7]">Willi</h1>
           </div>
-          <NuxtImg class="ml-6 h-32 w-32 md:h-64 md:w-64 rounded-lg" src="/milo.jpg" alt="pfp" />
+          <NuxtImg class="ml-6 h-32 w-32 rounded-lg md:h-64 md:w-64" src="/milo.jpg" alt="pfp" />
         </div>
         <div class="mt-8 flex flex-col items-center justify-center gap-6">
           <Track :track="tracks[0]" to-page v-if="status === 'success'" class="-mt-8 md:mt-0" />
-          <div v-else class="w-72 h-28 bg-white/10 rounded-lg animate-pulse"></div>
+          <div v-else class="h-28 w-72 animate-pulse rounded-lg bg-white/10"></div>
           <div class="flex flex-row justify-center gap-8">
             <div v-for="item in socials">
               <a
@@ -44,6 +68,10 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
               </a>
             </div>
           </div>
+        </div>
+
+        <div class="mt-8 flex justify-center gap-8">
+          <Project :project="project" v-for="project in projects" />
         </div>
       </div>
     </div>

@@ -14,33 +14,33 @@ const {
 </script>
 
 <template>
-  <div class="bg-background flex w-screen h-screen text-white items-center justify-center">
-    <a href="/" class="absolute top-5 left-5 bg-primary p-2 rounded-lg hover:bg-primary/80 transition-colors font-semibold"
-      >Go Back
+  <div class="flex h-screen w-screen items-center justify-center bg-background text-white">
+    <a href="/" class="absolute left-5 top-5 rounded-lg bg-primary p-2 font-semibold transition-colors hover:bg-primary/80">
+      Go Back
     </a>
-    <div class="h-[800px] w-[400px] md:w-[1000px] flex flex-col p-8 mt-32 md:mt-0">
-      <div class="flex flex-row justify-between items-center">
+    <div class="mt-32 flex h-[800px] w-[400px] flex-col p-8 md:mt-0 md:w-[1000px]">
+      <div class="flex flex-row items-center justify-between">
         <a
           :href="`https://last.fm/user/${$config.public.LAST_FM_USERNAME}`"
           target="_blank"
-          class="w-max hover:text-red-100 transition-colors"
+          class="w-max transition-colors hover:text-red-100"
           title="Last FM">
-          <div class="flex flex-row gap-3 items-center">
+          <div class="flex flex-row items-center gap-3">
             <NuxtImg src="/milo.jpg" alt="pfp" class="h-[60px] w-[60px] rounded-lg" />
-            <h1 class="text-3xl md:text-6xl font-semibold">My Songs</h1>
-            <span class="text-xs mt-10 -ml-2 hidden md:block">Powered by LastFM</span>
+            <h1 class="text-3xl font-semibold md:text-6xl">My Songs</h1>
+            <span class="-ml-2 mt-10 hidden text-xs md:block">Powered by LastFM</span>
           </div>
         </a>
         <button
-          class="bg-primary p-2 mr-2 font-semibold rounded-lg hover:bg-primary/80 transition-colors"
+          class="mr-2 rounded-lg bg-primary p-2 font-semibold transition-colors hover:bg-primary/80"
           @click="refresh()">
           Refresh
         </button>
       </div>
-      <div class="border-2 border-white/50 w-full rounded-full my-4"></div>
-      <div class="flex flex-row flex-wrap gap-4 justify-center overflow-y-auto">
+      <div class="my-4 w-full rounded-full border-2 border-white/50"></div>
+      <div class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
         <Track :track="track" v-for="track in tracks" :key="track.date?.uts ?? track.name" v-if="status === 'success'" />
-        <div v-else v-for="_ in 48" class="w-72 h-28 bg-white/10 rounded-lg animate-pulse"></div>
+        <div v-else v-for="_ in 48" class="h-28 w-72 animate-pulse rounded-lg bg-white/10"></div>
       </div>
     </div>
   </div>

@@ -17,5 +17,6 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ["@nuxt/image"]
+  modules: ["@nuxt/image", "@nuxt/icon"],
+  compatibilityDate: "2024-09-14"
 })
