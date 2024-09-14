@@ -12,12 +12,10 @@ const props = defineProps<{ project: { name: string; description: string; href: 
         <Icon :name="project.icon" size="1.5em" />
         <h1 class="text-lg">{{ project.name }}</h1>
       </div>
-      <img src="/github.svg" class="w-5 opacity-30" />
+      <NuxtImg src="/github.svg" class="w-5 opacity-30" />
     </div>
     <div class="mt-1 px-3 text-sm text-white/70">{{ project.description }}</div>
-    <div
-      class="absolute bottom-0 h-[6px] w-full rounded-bl-lg rounded-br-lg transition-all group-hover:brightness-125"
-      id="strip"></div>
+    <div class="absolute bottom-0 h-[6px] w-full rounded-b-lg transition-all group-hover:brightness-125" id="strip"></div>
   </a>
 </template>
 

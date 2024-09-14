@@ -46,7 +46,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
 
 <template>
   <div class="overflow-x-hidden">
-    <div class="flex h-screen w-screen justify-center bg-background font-semibold text-white">
+    <div class="flex h-[120vh] md:h-[125vh] lg:h-screen w-screen justify-center bg-background font-semibold text-white">
       <div class="flex flex-col">
         <div class="mt-32 flex flex-row justify-center">
           <div class="flex flex-col justify-center">
@@ -55,6 +55,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
           </div>
           <NuxtImg class="ml-6 h-32 w-32 rounded-lg md:h-64 md:w-64" src="/milo.jpg" alt="pfp" />
         </div>
+
         <div class="mt-8 flex flex-col items-center justify-center gap-6">
           <Track :track="tracks[0]" to-page v-if="status === 'success'" class="-mt-8 md:mt-0" />
           <div v-else class="h-28 w-72 animate-pulse rounded-lg bg-white/10"></div>
@@ -64,13 +65,13 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
                 :href="item.href"
                 :target="item.target || '_blank'"
                 class="inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg bg-primary p-4 transition-colors hover:bg-primary/80">
-                <NuxtImg :src="item.icon" alt="GitHub logo" class="h-6 w-6" />
+                <NuxtImg :src="item.icon" alt="Logo" class="h-6 w-6" />
               </a>
             </div>
           </div>
         </div>
 
-        <div class="mt-8 flex justify-center gap-8">
+        <div class="mt-8 flex flex-col justify-center gap-4 items-center lg:flex-row overflow-y-auto">
           <Project :project="project" v-for="project in projects" />
         </div>
       </div>
