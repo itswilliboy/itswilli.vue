@@ -46,7 +46,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
 
 <template>
   <div class="overflow-x-hidden">
-    <div class="flex h-[120vh] md:h-[125vh] lg:h-screen w-screen justify-center bg-background font-semibold text-white">
+    <div class="flex h-[120vh] w-screen justify-center bg-background font-semibold text-white md:h-[125vh] lg:h-screen">
       <div class="flex flex-col">
         <div class="mt-32 flex flex-row justify-center">
           <div class="flex flex-col justify-center">
@@ -71,7 +71,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
           </div>
         </div>
 
-        <div class="mt-8 flex flex-col justify-center gap-4 items-center lg:flex-row overflow-y-auto">
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 overflow-y-auto lg:flex-row">
           <Project :project="project" v-for="project in projects" />
         </div>
       </div>

@@ -1,7 +1,8 @@
 declare global {
   type Track = {
     artist: {
-      "#text": string
+      "#text"?: string
+      name?: string
     }
     image: {
       size: string
@@ -16,8 +17,10 @@ declare global {
       uts: string
     }
     "@attr": {
-      nowplaying: string
+      nowplaying?: string
+      rank?: string
     }
+    playcount?: string
   }
 }
 
