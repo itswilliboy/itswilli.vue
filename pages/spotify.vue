@@ -62,7 +62,7 @@ const { status: statusTop, data: tracksTop } = await useLazyFetch("/api/top", {
 
       <div class="flex flex-col justify-center gap-2">
         <TopTrack v-for="track in tracksTop" :track="track" v-if="statusTop === 'success'" />
-        <div v-else v-for="_ in 12" class="h-16 w-64 animate-pulse rounded-lg bg-white/10"></div>
+        <div v-else v-for="_ in 10" class="h-16 w-64 animate-pulse rounded-lg bg-white/10"></div>
       </div>
     </div>
   </div>
