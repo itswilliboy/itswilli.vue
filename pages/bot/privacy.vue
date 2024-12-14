@@ -45,6 +45,4 @@ const items = [
       <p class="pb-2 text-center text-white/50">Harmony is not affiliated with AniList.</p>
     </div>
   </div>
-
-  <Footer />
 </template>

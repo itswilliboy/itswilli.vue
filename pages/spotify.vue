@@ -20,13 +20,13 @@ const { status: statusTop, data: tracksTop } = await useLazyFetch("/api/top", {
 
 <template>
   <div
-    class="flex h-[230vh] w-screen flex-col items-center justify-center gap-4 overflow-x-hidden bg-background text-white md:h-screen md:flex-row">
+    class="flex p-4 min-h-screen flex-col items-center justify-center gap-4 overflow-x-hidden bg-background text-white lg:flex-row">
     <a
       href="/"
       class="absolute left-5 top-5 z-10 rounded-lg bg-primary p-2 font-semibold transition-colors hover:bg-primary/80">
       Go Back
     </a>
-    <div class="flex h-[800px] w-[400px] flex-col md:w-[1000px]">
+    <div class="flex h-[800px] w-[300px] flex-col lg:w-[1000px] pt-16 sm:pt-0">
       <div class="flex h-16 flex-row items-center justify-between">
         <a
           :href="`https://last.fm/user/${$config.public.LAST_FM_USERNAME}`"
@@ -35,7 +35,7 @@ const { status: statusTop, data: tracksTop } = await useLazyFetch("/api/top", {
           title="Last FM">
           <div class="flex flex-row items-center justify-center gap-3">
             <NuxtImg src="/milo.jpg" alt="pfp" class="h-[60px] w-[60px] rounded-lg" />
-            <h1 class="text-3xl font-semibold md:text-6xl">My Songs</h1>
+            <h1 class="text-3xl font-semibold lg:text-6xl">My Songs</h1>
             <span class="-ml-2 mt-10 hidden text-xs md:block">Powered by LastFM</span>
           </div>
         </a>
@@ -66,6 +66,4 @@ const { status: statusTop, data: tracksTop } = await useLazyFetch("/api/top", {
       </div>
     </div>
   </div>
-
-  <Footer />
 </template>

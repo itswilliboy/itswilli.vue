@@ -46,7 +46,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
 
 <template>
   <div class="overflow-x-hidden">
-    <div class="flex h-[120vh] w-screen justify-center bg-background font-semibold text-white md:h-[125vh] lg:h-screen">
+    <div class="flex min-h-screen pb-8 w-screen justify-center bg-background font-semibold text-white">
       <div class="flex flex-col">
         <div class="mt-32 flex flex-row justify-center">
           <div class="flex flex-col justify-center">
@@ -76,7 +76,5 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
         </div>
       </div>
     </div>
-
-    <Footer />
   </div>
 </template>

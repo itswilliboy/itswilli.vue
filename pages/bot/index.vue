@@ -5,6 +5,4 @@
       <h1><a href="https://old.itswilli.dev/harmony/terms">Terms of Service</a></h1>
     </div>
   </div>
-
-  <Footer />
 </template>
