@@ -57,7 +57,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
         </div>
 
         <div class="mt-8 flex flex-col items-center justify-center gap-6">
-          <Track :track="tracks[0]" to-page v-if="status === 'success'" class="-mt-8 md:mt-0" />
+          <Track :track="tracks[0]" to-page v-if="status === 'success'" />
           <div v-else class="h-28 w-72 animate-pulse rounded-lg bg-white/10"></div>
           <div class="flex flex-row justify-center gap-8">
             <div v-for="item in socials">
