@@ -1,8 +1,10 @@
 <template>
-  <main class="min-h-screen">
-    <NuxtPage />
-  </main>
-  <footer>
-    <Footer />
-  </footer>
+  <div class="overflow-x-hidden">
+    <main class="min-h-screen">
+      <NuxtPage />
+    </main>
+    <footer>
+      <Footer />
+    </footer>
+  </div>
 </template>
