@@ -6,10 +6,14 @@ const getRecentTracks = async (limit: number): Promise<Track[]> => {
     BASE +
     `/?method=user.getrecenttracks&user=${config.public.LAST_FM_USERNAME}&api_key=${process.env.LAST_FM_TOKEN}&format=json&limit=${limit}`
 
-  const resp = (await $fetch(URL, {
-    headers: { "Cache-Control": "max-age=30" }
-  })) as any
+  const resp = (await $fetch(URL, { headers: { "Cache-Control": "max-age=20" } })) as any
   const tracks = resp.recenttracks.track as Track[]
+
+  const maybeCurrent = tracks[0]
+  const isCurrent = Boolean(maybeCurrent.hasOwnProperty("@attr") && maybeCurrent["@attr"].nowplaying) ?? false
+  if (isCurrent) {
+    maybeCurrent.date = { uts: "0" } // i hate this api
+  }
 
   return tracks
 }
