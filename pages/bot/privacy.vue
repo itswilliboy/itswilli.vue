@@ -24,10 +24,12 @@ const items = [
 </script>
 
 <template>
-  <div class="flex h-screen w-screen items-center justify-center bg-background">
+  <div class="bg-background flex h-screen w-screen items-center justify-center">
     <div class="flex h-5/6 w-[300px] flex-col overflow-y-auto rounded-lg bg-white/10 text-white md:w-[500px]">
       <div class="flex h-24 flex-col items-center justify-center py-4 md:py-0">
-        <h1 class="text-2xl font-semibold md:text-4xl">Harmony Privacy Policy</h1>
+        <a href="/bot" class="hover:underline">
+          <h1 class="text-2xl font-semibold md:text-4xl">Harmony Privacy Policy</h1>
+        </a>
       </div>
       <div class="flex justify-center">
         <div class="w-4/5 rounded-lg border-2 border-white/50"></div>

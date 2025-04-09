@@ -76,4 +76,3 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
     </div>
   </div>
 </template>
-ca
