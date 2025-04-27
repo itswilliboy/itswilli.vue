@@ -34,10 +34,10 @@ const projects = [
   },
   {
     name: "images-rust",
-    description: "The backend for i.itswilli.dev, built in Rust with Rocket.",
-    href: "https://github.com/itswilliboy/images-rust",
-    colour: "#DFA484",
-    icon: "skill-icons:rust"
+    description: "The backend for i.itswilli.dev, built in Golang",
+    href: "https://github.com/itswilliboy/images-go",
+    colour: "#00ADD8",
+    icon: "skill-icons:golang"
   }
 ]
 
@@ -45,12 +45,12 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
 </script>
 
 <template>
-  <div class="flex min-h-screen pb-8 w-screen justify-center bg-background font-semibold text-white">
+  <div class="bg-background flex min-h-screen w-screen justify-center pb-8 font-semibold text-white">
     <div class="flex flex-col">
       <div class="mt-32 flex flex-row justify-center">
         <div class="flex flex-col justify-center">
           <h2 class="text-md md:text-2xl">Hi, you may know me as</h2>
-          <h1 class="h-32 text-[6rem] font-bold leading-[.8] text-primary md:text-[10rem] md:leading-[.7]">Willi</h1>
+          <h1 class="text-primary h-32 text-[6rem] leading-[.8] font-bold md:text-[10rem] md:leading-[.7]">Willi</h1>
         </div>
         <NuxtImg class="ml-6 h-32 w-32 rounded-lg md:h-64 md:w-64" src="/milo.jpg" alt="pfp" />
       </div>
@@ -63,7 +63,7 @@ const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { l
             <a
               :href="item.href"
               :target="item.target || '_blank'"
-              class="inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg bg-primary p-4 transition-colors hover:bg-primary/80">
+              class="bg-primary hover:bg-primary/80 inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg p-4 transition-colors">
               <NuxtImg :src="item.icon" alt="Logo" class="h-6 w-6" />
             </a>
           </div>
