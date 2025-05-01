@@ -33,7 +33,7 @@ const projects = [
     icon: "skill-icons:python-dark"
   },
   {
-    name: "images-rust",
+    name: "images-go",
     description: "The backend for i.itswilli.dev, built in Golang",
     href: "https://github.com/itswilliboy/images-go",
     colour: "#00ADD8",
