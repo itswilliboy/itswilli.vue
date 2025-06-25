@@ -41,23 +41,43 @@ const projects = [
   }
 ]
 
+const tools = [
+  {
+    name: "Movie Marathon Calculator",
+    icon: "zondicons:calculator",
+    size: "32",
+    href: "/tools/movie-marathon-calculator"
+  }
+]
+
 const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { limit: 1 }, server: false })
 </script>
 
 <template>
+  <DevOnly>
+    <NavButton class="absolute mt-4 ml-4">
+      <Tooltip text="Movie Marathon Calculator">
+        <a v-for="tool in tools" class="flex flex-col items-center justify-center py-2" :href="tool.href" :title="tool.name">
+          <Icon :name="tool.icon" class="opacity-50 invert transition-opacity hover:opacity-70" :size="tool.size" />
+        </a>
+      </Tooltip>
+    </NavButton>
+  </DevOnly>
   <div class="bg-background flex min-h-screen w-screen justify-center pb-8 font-semibold text-white">
     <div class="flex flex-col">
       <div class="mt-32 flex flex-row justify-center">
         <div class="flex flex-col justify-center">
-          <h2 class="text-md md:text-2xl">Hi, you may know me as</h2>
-          <h1 class="text-primary h-32 text-[6rem] leading-[.8] font-bold md:text-[10rem] md:leading-[.7]">Willi</h1>
+          <h2 class="text-md md:text-2xl">Hello, I am</h2>
+          <h1 class="text-primary h-32 text-[6rem] leading-[.7] font-bold md:text-[10rem]">Willi</h1>
         </div>
-        <NuxtImg class="ml-6 h-32 w-32 rounded-lg md:h-64 md:w-64" src="/milo.jpg" alt="pfp" />
+        <Tooltip text="Yes, it's my cat..." :delay="1000">
+          <NuxtImg class="ml-6 h-32 w-32 rounded-lg md:h-64 md:w-64" src="/milo.jpg" alt="pfp" />
+        </Tooltip>
       </div>
 
       <div class="mt-8 flex flex-col items-center justify-center gap-6">
         <Track :track="tracks[0]" to-page v-if="status === 'success'" />
-        <div v-else class="h-28 w-72 animate-pulse rounded-lg bg-white/10"></div>
+        <div v-else class="bg-light-bg h-28 w-72 animate-pulse rounded-lg"></div>
         <div class="flex flex-row justify-center gap-8">
           <div v-for="item in socials">
             <a

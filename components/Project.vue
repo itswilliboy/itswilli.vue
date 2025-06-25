@@ -4,7 +4,7 @@ const props = defineProps<{ project: { name: string; description: string; href: 
 
 <template>
   <a
-    class="group relative h-28 w-72 rounded-lg bg-white/10 transition-all hover:bg-white/15"
+    class="group bg-light-bg relative h-28 w-72 rounded-lg transition-all hover:bg-white/15"
     :href="project.href"
     target="_blank">
     <div class="flex items-center justify-between px-3 pt-3">

@@ -15,6 +15,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     LAST_FM_TOKEN: "",
+    TMDB_TOKEN: "",
     public: {
       LAST_FM_USERNAME: "ItsWilliboy"
     }

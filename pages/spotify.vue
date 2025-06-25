@@ -63,7 +63,7 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
           </a>
           <button
             v-if="status !== 'pending'"
-            class="bg-primary hover:bg-primary/80 mr-2 h-[40px] w-[70px] rounded-lg p-2 font-semibold transition-colors"
+            class="bg-primary hover:bg-primary/80 mr-2 h-[40px] w-max rounded-lg p-2 font-semibold transition-colors"
             @click="refresh">
             Refresh
           </button>
@@ -87,7 +87,7 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
                 :is-top-track="checkIncludes(tracksTop!, track.name)" />
             </li>
           </TransitionGroup>
-          <div v-else v-for="_ in 48" class="h-28 w-72 animate-pulse rounded-lg bg-white/10"></div>
+          <div v-else v-for="_ in 48" class="bg-light-bg h-28 w-72 animate-pulse rounded-lg"></div>
         </div>
       </div>
 
@@ -101,7 +101,7 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
 
         <div class="flex flex-col justify-center gap-2">
           <TopTrack v-for="track in tracksTop" :track="track" v-if="statusTop === 'success'" />
-          <div v-else v-for="_ in 10" class="h-16 w-64 animate-pulse rounded-lg bg-white/10"></div>
+          <div v-else v-for="_ in 10" class="bg-light-bg h-16 w-64 animate-pulse rounded-lg"></div>
         </div>
       </div>
     </div>

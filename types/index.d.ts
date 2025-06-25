@@ -1,4 +1,6 @@
 declare global {
+  type Option<T> = T | null
+
   type Track = {
     artist: {
       "#text"?: string
