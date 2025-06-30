@@ -1,3 +1,5 @@
+import type MovieMarathonCalculator from "~/pages/tools/movie-marathon-calculator.vue"
+
 declare global {
   type Option<T> = T | null
 
@@ -23,6 +25,21 @@ declare global {
       rank?: string
     }
     playcount?: string
+  }
+
+  interface SearchMovie {
+    id: number
+    title: string
+    overview: string
+    release_date: string
+    genre_ids: number[]
+    poster_path: string
+    backdrop_path: string
+    vote_average: number
+  }
+
+  interface Movie extends SearchMovie {
+    runtime: number
   }
 }
 

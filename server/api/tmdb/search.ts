@@ -1,14 +1,3 @@
-type SearchMovie = {
-  id: number
-  title: string
-  overview: string
-  release_date: string
-  genre_ids: number[]
-  poster_path: string
-  backdrop_path: string
-  vote_average: number
-}
-
 const searchMovies = async (search: string): Promise<SearchMovie[]> => {
   const URL = `https://api.themoviedb.org/3/search/movie?query=${search}`
   const result = (await $fetch(URL, { headers: { Authorization: `Bearer ${process.env.TMDB_TOKEN!}` } })) as {
@@ -26,7 +15,7 @@ const searchMovies = async (search: string): Promise<SearchMovie[]> => {
       backdrop_path,
       vote_average
     })
-  ) as SearchMovie[]
+  ) satisfies SearchMovie[]
 }
 
 export default defineEventHandler(async e => {
