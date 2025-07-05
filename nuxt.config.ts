@@ -6,6 +6,11 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   css: ["~/assets/css/main.css"],
 
+  routeRules: {
+    "/": { prerender: true },
+    "/spotify": { prerender: true }
+  },
+
   // postcss: {
   //   plugins: {
   //     tailwindcss: {},
