@@ -7,8 +7,8 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
 
   routeRules: {
-    "/": { prerender: true },
-    "/spotify": { prerender: true }
+    "/": { swr: true },
+    "/spotify": { swr: true }
   },
 
   // postcss: {
