@@ -6,18 +6,6 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   css: ["~/assets/css/main.css"],
 
-  routeRules: {
-    "/": { swr: 20 },
-    "/spotify": { swr: true }
-  },
-
-  // postcss: {
-  //   plugins: {
-  //     tailwindcss: {},
-  //     autoprefixer: {}
-  //   }
-  // },
-
   runtimeConfig: {
     LAST_FM_TOKEN: "",
     TMDB_TOKEN: "",

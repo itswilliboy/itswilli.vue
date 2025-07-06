@@ -10,7 +10,7 @@ export const useMousePosition = () => {
     window.addEventListener("mousemove", update)
   })
   onUnmounted(() => {
-    window.addEventListener("mousemove", update)
+    window.removeEventListener("mousemove", update)
   })
 
   return { x, y }
