@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
 
   routeRules: {
-    "/": { swr: true },
+    "/": { swr: 20 },
     "/spotify": { swr: true }
   },
 
