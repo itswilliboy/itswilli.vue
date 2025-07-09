@@ -50,10 +50,15 @@ const tools = [
   }
 ]
 
-const { status, data: tracks } = await useLazyFetch("/api/spotify", {
-  query: { limit: 1 },
-  server: false
+const {
+  status,
+  data: tracks,
+  refresh
+} = await useLazyFetch("/api/spotify", {
+  query: { limit: 1 }
 })
+
+useIntervalFn(refresh, 20_000)
 </script>
 
 <template>

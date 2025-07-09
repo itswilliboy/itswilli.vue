@@ -6,19 +6,20 @@ const getRecentTracks = async (limit: number): Promise<Track[]> => {
     BASE +
     `/?method=user.gettoptracks&user=${config.public.LAST_FM_USERNAME}&api_key=${process.env.LAST_FM_TOKEN}&format=json&limit=${limit}&period=7day`
 
-  const resp = (await $fetch(URL, {
-    headers: { "Cache-Control": "max-age=30" }
-  })) as any
+  const resp = (await $fetch(URL)) as any
   const tracks = resp.toptracks.track as Track[]
 
   return tracks
 }
 
-export default defineEventHandler(async e => {
-  const query = getQuery(e)
-  const limit = Number(query.limit ?? 15)
-  const clamped = Math.max(1, Math.min(limit, 50))
+export default cachedEventHandler(
+  async e => {
+    const query = getQuery(e)
+    const limit = Number(query.limit ?? 15)
+    const clamped = Math.max(1, Math.min(limit, 50))
 
-  const tracks = await getRecentTracks(clamped)
-  return tracks.slice(0, clamped)
-})
+    const tracks = await getRecentTracks(clamped)
+    return tracks.slice(0, clamped)
+  },
+  { maxAge: 300 }
+)

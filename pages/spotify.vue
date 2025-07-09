@@ -11,18 +11,14 @@ const {
   data,
   refresh: refetch
 } = await useLazyFetch("/api/spotify", {
-  query: { limit: 48 },
-  headers: { "Cache-Control": "max-age=20" }
+  query: { limit: 48 }
 })
 
 const { status: statusTop, data: tracksTop } = await useLazyFetch("/api/top", {
-  query: { limit: 10 },
-  headers: { "Cache-Control": "max-age=20" }
+  query: { limit: 10 }
 })
 
-const { status: statusArtists, data: topArtists } = await useLazyFetch("/api/gradient", {
-  headers: { "Cache-Control": "max-age=600" }
-})
+const { status: statusArtists, data: topArtists } = await useLazyFetch("/api/gradient")
 
 const refresh = async () => {
   if (!data.value) return
@@ -42,11 +38,11 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
 
 <template>
   <div class="bg-background flex min-h-screen flex-col gap-4 p-4 text-white">
-    <a
-      href="/"
+    <NuxtLink
+      to="/"
       class="bg-primary hover:bg-primary/80 top-5 left-5 z-10 w-20 rounded-lg p-2 text-center font-semibold transition-colors">
       Go Back
-    </a>
+    </NuxtLink>
     <div class="flex h-full flex-col items-center justify-center gap-4 lg:flex-row">
       <div class="flex h-[800px] w-[300px] flex-col lg:w-[1000px]">
         <div class="flex h-16 flex-row items-center justify-between">
@@ -75,19 +71,21 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
         </div>
         <div class="my-4 w-full rounded-full border-2 border-white/50"></div>
         <div class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
-          <TransitionGroup
-            v-if="data && statusArtists === 'success'"
-            name="list"
-            tag="ul"
-            class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
-            <li v-for="track in data" :key="track.date.uts === '0' ? track.name : track.date.uts">
-              <Track
-                :track="track"
-                :is-top-artist="checkIncludes(topArtists!, track.artist['#text']!)"
-                :is-top-track="checkIncludes(tracksTop!, track.name)" />
-            </li>
-          </TransitionGroup>
-          <div v-else v-for="_ in 48" class="bg-light-bg h-28 w-72 animate-pulse rounded-lg"></div>
+          <ClientOnly>
+            <TransitionGroup
+              v-if="status === 'success' && statusArtists === 'success'"
+              name="list"
+              tag="ul"
+              class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
+              <li v-for="track in data" :key="track.date.uts === '0' ? track.name : track.date.uts">
+                <Track
+                  :track="track"
+                  :is-top-artist="checkIncludes(topArtists!, track.artist['#text']!)"
+                  :is-top-track="checkIncludes(tracksTop!, track.name)" />
+              </li>
+            </TransitionGroup>
+            <div v-else v-for="_ in 48" class="bg-light-bg h-28 w-72 animate-pulse rounded-lg"></div>
+          </ClientOnly>
         </div>
       </div>
 

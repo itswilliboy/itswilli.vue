@@ -15,13 +15,14 @@ const getTopArtists = async (limit: number): Promise<Data[]> => {
     BASE +
     `/?method=user.gettopartists&user=${config.public.LAST_FM_USERNAME}&api_key=${process.env.LAST_FM_TOKEN}&format=json&limit=${limit}&period=1month`
 
-  const resp = (await $fetch(URL, {
-    headers: { "Cache-Control": "max-age=30" }
-  })) as any
+  const resp = (await $fetch(URL, {})) as any
   return resp.topartists.artist as Data[]
 }
 
-export default defineEventHandler(async () => {
-  const resp = await getTopArtists(10)
-  return resp
-})
+export default cachedEventHandler(
+  async () => {
+    const resp = await getTopArtists(10)
+    return resp
+  },
+  { maxAge: 300 }
+)
