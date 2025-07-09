@@ -50,7 +50,10 @@ const tools = [
   }
 ]
 
-const { status, data: tracks } = await useLazyFetch("/api/spotify", { query: { limit: 1 } })
+const { status, data: tracks } = await useLazyFetch("/api/spotify", {
+  query: { limit: 1 },
+  server: false
+})
 </script>
 
 <template>
