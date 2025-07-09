@@ -18,6 +18,10 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()]
   },
 
+  image: {
+    domains: ["https://lastfm.freetls.fastly.net"]
+  },
+
   modules: ["@nuxt/image", "@nuxt/icon"],
   compatibilityDate: "2024-09-14"
 })

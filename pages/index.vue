@@ -58,7 +58,7 @@ const {
   query: { limit: 1 }
 })
 
-useIntervalFn(refresh, 20_000)
+useIntervalFn(refresh, 60_000)
 </script>
 
 <template>
