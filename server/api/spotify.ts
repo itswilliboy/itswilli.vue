@@ -18,7 +18,7 @@ const getRecentTracks = async (limit: number): Promise<Track[]> => {
   return tracks
 }
 
-export default cachedEventHandler(
+export default defineCachedEventHandler(
   async e => {
     const query = getQuery(e)
     const limit = Number(query.limit ?? 15)
@@ -27,5 +27,5 @@ export default cachedEventHandler(
     const tracks = await getRecentTracks(clamped)
     return tracks.slice(0, clamped)
   },
-  { maxAge: 20 }
+  { maxAge: 20, swr: false }
 )

@@ -19,7 +19,7 @@ const getTopArtists = async (limit: number): Promise<Data[]> => {
   return resp.topartists.artist as Data[]
 }
 
-export default cachedEventHandler(
+export default defineCachedEventHandler(
   async () => {
     const resp = await getTopArtists(10)
     return resp

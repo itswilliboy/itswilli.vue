@@ -12,7 +12,7 @@ const getRecentTracks = async (limit: number): Promise<Track[]> => {
   return tracks
 }
 
-export default cachedEventHandler(
+export default defineCachedEventHandler(
   async e => {
     const query = getQuery(e)
     const limit = Number(query.limit ?? 15)
