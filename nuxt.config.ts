@@ -19,9 +19,7 @@ export default defineNuxtConfig({
   },
 
   image: {
-    provider: "ipx",
-    domains: ["https://lastfm.freetls.fastly.net"],
-    ipx: { fs: { dir: "public" } }
+    domains: ["https://lastfm.freetls.fastly.net"]
   },
 
   modules: ["@nuxt/image", "@nuxt/icon"],
