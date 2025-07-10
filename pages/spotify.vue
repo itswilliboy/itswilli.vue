@@ -11,14 +11,16 @@ const {
   data,
   refresh: refetch
 } = await useLazyFetch("/api/spotify", {
-  query: { limit: 48 }
+  query: { limit: 48 },
+  server: false
 })
 
 const { status: statusTop, data: tracksTop } = await useLazyFetch("/api/top", {
-  query: { limit: 10 }
+  query: { limit: 10 },
+  server: false
 })
 
-const { status: statusArtists, data: topArtists } = await useLazyFetch("/api/gradient")
+const { status: statusArtists, data: topArtists } = await useLazyFetch("/api/gradient", { server: false })
 
 const refresh = async () => {
   if (!data.value) return
