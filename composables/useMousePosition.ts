@@ -3,7 +3,7 @@ export const useMousePosition = () => {
 
   const update = (event: { pageX: number; pageY: number }) => {
     x.value = event.pageX
-    y.value = event.pageY
+    y.value = event.pageY - window.scrollY
   }
 
   onMounted(() => {
