@@ -38,8 +38,9 @@ declare global {
     vote_average: number
   }
 
-  interface Movie extends SearchMovie {
+  interface Movie extends Omit<SearchMovie, "genre_ids"> {
     runtime: number
+    genres: { id: number; name: string }[]
   }
 }
 

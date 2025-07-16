@@ -10,7 +10,7 @@ const fetchMovie = async (id: number): Promise<Movie> => {
     title: result.title,
     overview: result.overview,
     release_date: result.release_date,
-    genre_ids: result.genre_ids,
+    genres: result.genres,
     poster_path: result.poster_path,
     backdrop_path: result.backdrop_path,
     vote_average: result.vote_average,

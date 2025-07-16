@@ -1,4 +1,6 @@
 <script setup>
+import { ClientOnly } from '#components'
+
 useSeoMeta({
   title: "Willi",
   ogTitle: "Willi",
@@ -66,12 +68,13 @@ useIntervalFn(refresh, 60_000)
   <DevOnly>
     <NavButton class="absolute mt-4 ml-4">
       <Tooltip text="Movie Marathon Calculator">
-        <a v-for="tool in tools" class="flex flex-col items-center justify-center py-2" :href="tool.href" :title="tool.name">
+        <NuxtLink :to="tool.href" v-for="tool in tools" class="flex flex-col items-center justify-center py-2">
           <Icon :name="tool.icon" class="opacity-50 invert transition-opacity hover:opacity-70" :size="tool.size" />
-        </a>
+        </NuxtLink>
       </Tooltip>
     </NavButton>
   </DevOnly>
+
   <div class="bg-background flex min-h-screen w-screen justify-center pb-8 font-semibold text-white">
     <div class="flex flex-col">
       <div class="mt-32 flex flex-row justify-center">
@@ -105,3 +108,4 @@ useIntervalFn(refresh, 60_000)
     </div>
   </div>
 </template>
+

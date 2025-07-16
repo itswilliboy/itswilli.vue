@@ -40,11 +40,7 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
 
 <template>
   <div class="bg-background flex min-h-screen flex-col gap-4 p-4 text-white">
-    <NuxtLink
-      to="/"
-      class="bg-primary hover:bg-primary/80 top-5 left-5 z-10 w-20 rounded-lg p-2 text-center font-semibold transition-colors">
-      Go Back
-    </NuxtLink>
+    <LinkButton to="/">Go Back</LinkButton>
     <div class="flex h-full flex-col items-center justify-center gap-4 lg:flex-row">
       <div class="flex h-[800px] w-[300px] flex-col lg:w-[1000px]">
         <div class="flex h-16 flex-row items-center justify-between">
@@ -59,17 +55,7 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
               <span class="mt-10 -ml-2 hidden text-xs md:block">Powered by LastFM</span>
             </div>
           </a>
-          <button
-            v-if="status !== 'pending'"
-            class="bg-primary hover:bg-primary/80 mr-2 h-[40px] w-max rounded-lg p-2 font-semibold transition-colors"
-            @click="refresh">
-            Refresh
-          </button>
-          <div
-            v-else
-            class="bg-primary mr-2 flex h-[40px] w-[70px] animate-pulse cursor-not-allowed items-center justify-center rounded-lg">
-            <img src="/loading.svg" class="invert" />
-          </div>
+          <Button @click="refresh" :loading="status === 'pending'">Refresh</Button>
         </div>
         <div class="my-4 w-full rounded-full border-2 border-white/50"></div>
         <div class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
@@ -115,13 +101,10 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
   transition: all 1.25s ease;
 }
 
-.list-enter-from {
-  opacity: 0;
-  transform: translateY(-50px);
-}
-
+.list-enter-from,
 .list-leave-to {
   opacity: 0;
+  transform: translateY(-50px);
 }
 
 .list-leave-active {
