@@ -4,6 +4,7 @@ declare global {
   type Option<T> = T | null
 
   type Track = {
+    mbid: string
     artist: {
       "#text"?: string
       name?: string

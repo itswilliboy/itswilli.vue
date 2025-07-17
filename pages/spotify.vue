@@ -31,6 +31,7 @@ const refresh = async () => {
 
   if (newFirst.date.uts === currFirst.date.uts && newFirst.name == currFirst.name) return
   data.value = data.value.slice(0, 48)
+  // data.value = [...data.value.slice(0, 48)]
 }
 
 const checkIncludes = <T extends { name: string }>(one: T[], two: string): boolean => {
@@ -61,11 +62,11 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
         <div class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
           <ClientOnly>
             <TransitionGroup
-              v-if="status === 'success' && statusArtists === 'success'"
+              v-if="data"
               name="list"
               tag="ul"
-              class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
-              <li v-for="track in data" :key="track.date.uts === '0' ? track.name : track.date.uts">
+              class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto relative">
+              <li v-for="track in data" :key="`${track.name}-${track.date.uts}-${track.mbid}`">
                 <Track
                   :track="track"
                   :is-top-artist="checkIncludes(topArtists!, track.artist['#text']!)"
@@ -96,18 +97,19 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
 
 <style scoped>
 .list-move,
-.list-enter-active,
-.list-leave-active {
-  transition: all 1.25s ease;
+.list-enter-active {
+  transition: all 1s ease;
 }
-
-.list-enter-from,
-.list-leave-to {
+.list-enter-from {
   opacity: 0;
-  transform: translateY(-50px);
+  transform: translateY(-30px);
 }
-
+.list-leave-to {
+  transition: none;
+  opacity: 0;
+}
 .list-leave-active {
   position: absolute;
 }
 </style>
+
