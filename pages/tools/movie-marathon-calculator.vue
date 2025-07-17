@@ -45,8 +45,9 @@ const data = {
       <MovieRuntime :runtime="totalRuntime" />
     </ClientOnly>
     <div class="flex w-128 flex-col gap-2">
+      <div class="flex gap-1">
       <Button
-        class="text-white"
+        class="text-white grow"
         @click="
           () => {
             for (let i = 0; i < 2; i++) {
@@ -58,6 +59,10 @@ const data = {
         ">
         Add Movies
       </Button>
+      <Button class="!bg-gray-500 hover:!bg-gray-600 !min-w-10" @click="() => movies = []">
+        <Icon name="material-symbols:delete-outline-rounded" class="invert" size="16px"/>
+      </Button>
+      </div>
       <MovieDropdownSearch class="z-1000" @movie-add="id => addMovie(id)" />
       <TransitionGroup name="movies" tag="ul" class="relative flex w-full flex-col gap-2 text-white">
         <MovieItem v-for="movie in movies" :movie="movie" :key="movie.id" @movie-remove="id => removeMovie(id)" />
