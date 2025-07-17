@@ -31,7 +31,6 @@ const refresh = async () => {
 
   if (newFirst.date.uts === currFirst.date.uts && newFirst.name == currFirst.name) return
   data.value = data.value.slice(0, 48)
-  // data.value = [...data.value.slice(0, 48)]
 }
 
 const checkIncludes = <T extends { name: string }>(one: T[], two: string): boolean => {
