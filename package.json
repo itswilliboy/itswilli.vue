@@ -17,7 +17,7 @@
     "@tailwindcss/vite": "^4.1.10",
     "date-fns": "^4.1.0",
     "highlight.js": "^11.11.1",
-    "nuxt": "^3.17.5",
+    "nuxt": "^4.0.0",
     "tailwindcss": "^4.1.10",
     "vue": "^3.5.17",
     "vue-countup-v3": "^1.4.2",
@@ -26,5 +26,9 @@
   "devDependencies": {
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.13"
-  }
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "@tailwindcss/oxide"
+  ]
 }
