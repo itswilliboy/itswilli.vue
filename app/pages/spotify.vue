@@ -20,14 +20,14 @@ const { status: statusTop, data: tracksTop } = await useLazyFetch("/api/top", {
   server: false
 })
 
-const { status: statusArtists, data: topArtists } = await useLazyFetch("/api/gradient", { server: false })
+const { data: topArtists } = await useLazyFetch("/api/gradient", { server: false })
 
 const refresh = async () => {
   if (!data.value) return
 
-  const currFirst = data.value[0]
+  const currFirst = data.value[0]!
   await refetch()
-  const newFirst = data.value[0]
+  const newFirst = data.value[0]!
 
   if (newFirst.date.uts === currFirst.date.uts && newFirst.name == currFirst.name) return
   data.value = data.value.slice(0, 48)
@@ -64,7 +64,7 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
               v-if="data"
               name="list"
               tag="ul"
-              class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto relative">
+              class="relative flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
               <li v-for="track in data" :key="`${track.name}-${track.date.uts}-${track.mbid}`">
                 <Track
                   :track="track"
@@ -111,4 +111,3 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
   position: absolute;
 }
 </style>
-

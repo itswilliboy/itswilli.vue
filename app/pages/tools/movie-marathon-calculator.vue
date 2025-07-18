@@ -48,15 +48,7 @@ const data = {
       <div class="flex gap-1">
       <Button
         class="text-white grow"
-        @click="
-          () => {
-            for (let i = 0; i < 2; i++) {
-              const d = { ...data }
-              d.id = Math.floor(Math.random() * 1000)
-              movies.push(d)
-            }
-          }
-        ">
+        @click="movies.push(data)">
         Add Movies
       </Button>
       <Button class="!bg-gray-500 hover:!bg-gray-600 !min-w-10" @click="() => movies = []">
