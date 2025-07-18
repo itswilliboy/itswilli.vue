@@ -1,5 +1,3 @@
-import type MovieMarathonCalculator from "~/pages/tools/movie-marathon-calculator.vue"
-
 declare global {
   type Option<T> = T | null
 

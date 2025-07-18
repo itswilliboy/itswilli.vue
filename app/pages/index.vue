@@ -1,6 +1,4 @@
 <script setup>
-import { ClientOnly } from '#components'
-
 useSeoMeta({
   title: "Willi",
   ogTitle: "Willi",
