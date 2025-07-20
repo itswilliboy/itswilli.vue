@@ -20,7 +20,7 @@ const socials = [
 const projects = [
   {
     name: "itswilli.vue",
-    description: "This site. Built in Vue with Nuxt using TailwindCSS.",
+    description: "This site. Built in Vue with Nuxt using TailwindCSS",
     href: "https://github.com/itswilliboy/itswilli.vue",
     colour: "#41B783",
     icon: "skill-icons:nuxtjs-dark"
