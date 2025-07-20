@@ -33,9 +33,9 @@ const projects = [
     icon: "skill-icons:python-dark"
   },
   {
-    name: "images-go",
-    description: "The backend for i.itswilli.dev, built in Golang",
-    href: "https://github.com/itswilliboy/images-go",
+    name: "meteorite",
+    description: "A small image host written in Go, available at i.itswilli.dev",
+    href: "https://github.com/itswilliboy/meteorite",
     colour: "#00ADD8",
     icon: "skill-icons:golang"
   }
