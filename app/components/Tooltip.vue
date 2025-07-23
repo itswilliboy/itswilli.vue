@@ -2,12 +2,12 @@
 const { x, y } = useMousePosition()
 const tooltip = useTemplateRef("tooltip")
 const isHovered = ref<boolean>(false)
-defineProps<{ text: string }>()
+const { side = "right" } = defineProps<{ text: string; side?: "left" | "right" }>()
 
 const onHover = () => {
   if (!tooltip.value) return
   const style = tooltip.value.style
-  style.left = `${x.value + 30}px`
+  style.left = `${x.value - (side === "left" ? 70 : -30)}px`
   style.top = `${y.value - 10}px`
 }
 
@@ -22,15 +22,29 @@ const onMouseLeave = () => {
 <template>
   <div>
     <ClientOnly>
-      <span
-        v-if="isHovered"
-        ref="tooltip"
-        class="bg-light-bg pointer-events-none fixed z-1000 rounded-lg px-3 py-1 font-semibold text-white transition-opacity duration-100 select-none">
-        {{ text }}
-      </span>
+      <Transition>
+        <span
+          v-if="isHovered"
+          ref="tooltip"
+          class="bg-light-bg pointer-events-none fixed z-1000 rounded-lg px-3 py-1 font-semibold text-white transition-opacity duration-100 select-none">
+          {{ text }}
+        </span>
+      </Transition>
     </ClientOnly>
     <span @mousemove="onHover" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
       <slot />
     </span>
   </div>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

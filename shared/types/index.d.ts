@@ -41,6 +41,12 @@ declare global {
     runtime: number
     genres: { id: number; name: string }[]
   }
+
+  type Friend = {
+    name: string
+    href: string
+    githubID: number
+  }
 }
 
 export {}

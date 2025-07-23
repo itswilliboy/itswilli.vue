@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 useSeoMeta({
   title: "Willi",
   ogTitle: "Willi",
@@ -50,6 +50,19 @@ const tools = [
   }
 ]
 
+const friends = [
+  {
+    name: "Faaz",
+    href: "https://faaz.dev",
+    githubID: 70286349
+  },
+  {
+    name: "Dep",
+    href: "https://deprecating.xyz",
+    githubID: 70801324
+  }
+] satisfies Friend[]
+
 const {
   status,
   data: tracks,
@@ -72,6 +85,8 @@ useIntervalFn(refresh, 60_000)
       </Tooltip>
     </NavButton>
   </DevOnly>
+
+  <Friends class="absolute top-4 right-4" :friends />
 
   <div class="bg-background flex min-h-screen w-screen justify-center pb-8 font-semibold text-white">
     <div class="flex flex-col">
@@ -106,4 +121,3 @@ useIntervalFn(refresh, 60_000)
     </div>
   </div>
 </template>
-
