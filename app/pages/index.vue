@@ -86,11 +86,13 @@ useIntervalFn(refresh, 60_000)
     </NavButton>
   </DevOnly>
 
-  <Friends class="absolute top-4 right-4" :friends >
-
-  <NuxtLink to="https://leo.might-be.gay">
-    <NuxtImg src="https://leo.might-be.gay/static/graphics/88x31.png" style="image-rendering: crisp-edges;" class="w-[88px] h-[31px]" />
-  </NuxtLink>
+  <Friends class="absolute top-4 right-4" :friends>
+    <NuxtLink to="https://leo.might-be.gay">
+      <NuxtImg
+        src="https://leo.might-be.gay/static/graphics/88x31.png"
+        style="image-rendering: crisp-edges"
+        class="h-[31px] w-[88px]" />
+    </NuxtLink>
   </Friends>
 
   <div class="bg-background flex min-h-screen w-screen justify-center pb-8 font-semibold text-white">
@@ -111,7 +113,7 @@ useIntervalFn(refresh, 60_000)
         <div class="flex flex-row justify-center gap-8">
           <div v-for="item in socials">
             <a
-              :href="item.href",
+              :href="item.href"
               target="_blank"
               class="bg-primary hover:bg-primary/80 inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg p-4 transition-colors">
               <NuxtImg :src="item.icon" alt="Logo" class="h-6 w-6" />
