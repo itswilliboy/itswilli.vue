@@ -14,17 +14,19 @@
     "@highlightjs/vue-plugin": "^2.1.0",
     "@nuxt/icon": "^1.15.0",
     "@nuxt/image": "^1.11.0",
-    "@tailwindcss/vite": "^4.1.16",
+    "@tailwindcss/vite": "^4.1.17",
+    "baseline-browser-mapping": "^2.9.6",
+    "caniuse-lite": "^1.0.30001760",
     "date-fns": "^4.1.0",
     "highlight.js": "^11.11.1",
-    "nuxt": "^4.2.0",
-    "tailwindcss": "^4.1.16",
-    "vue": "^3.5.22",
+    "nuxt": "^4.2.2",
+    "tailwindcss": "^4.1.17",
+    "vue": "^3.5.25",
     "vue-countup-v3": "^1.4.2",
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.6.14"
   },
   "trustedDependencies": [

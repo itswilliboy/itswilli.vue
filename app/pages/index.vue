@@ -88,10 +88,7 @@ useIntervalFn(refresh, 60_000)
 
   <Friends class="absolute top-4 right-4" :friends>
     <NuxtLink to="https://leo.might-be.gay">
-      <NuxtImg
-        src="https://leo.might-be.gay/static/graphics/88x31.png"
-        style="image-rendering: crisp-edges"
-        class="h-[31px] w-[88px]" />
+      <NuxtImg src="/leo_88x31.png" style="image-rendering: crisp-edges" class="h-[31px] w-[88px]" />
     </NuxtLink>
   </Friends>
 

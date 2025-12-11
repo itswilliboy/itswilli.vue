@@ -25,7 +25,7 @@ useIntervalFn(() => {
         <p class="absolute right-0 mt-2 mr-3 font-bold text-white/50">{{ relative.replace("about", "") }}</p>
       </ClientOnly>
       <div class="flex h-full w-full items-center gap-4 px-4">
-        <NuxtImg placeholder preload :src="track.image[2]['#text']" class="rounded-lg" width="80" height="80" />
+        <NuxtImg placeholder preload :src="track.image[2]!['#text']" class="rounded-lg" width="80" height="80" />
         <div class="flex flex-col justify-center">
           <Tooltip :text="track.name">
             <h1 class="line-clamp-1 text-lg font-semibold break-all" :class="isTopTrack && 'top'">
@@ -44,7 +44,7 @@ useIntervalFn(() => {
 @reference "@/assets/css/main.css";
 
 .top {
-  @apply bg-gradient-to-r from-indigo-300 via-pink-300 to-indigo-300;
+  @apply bg-linear-to-r from-indigo-300 via-pink-300 to-indigo-300;
   font-weight: bold;
   background-clip: text;
   -webkit-text-fill-color: transparent;
