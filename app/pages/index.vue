@@ -68,8 +68,7 @@ const {
   data: tracks,
   refresh
 } = await useLazyFetch("/api/spotify", {
-  query: { limit: 1 },
-  server: false
+  query: { limit: 1 }
 })
 
 useIntervalFn(refresh, 60_000)
