@@ -1,11 +1,4 @@
 <script setup lang="ts">
-useSeoMeta({
-  title: "Willi - Spotify",
-  ogTitle: "Willi - Spotify",
-  description: "See my most recently played songs.",
-  ogDescription: "See my most recently played songs."
-})
-
 const {
   status,
   data,

@@ -1,11 +1,4 @@
 <script setup lang="ts">
-useSeoMeta({
-  title: "Willi",
-  ogTitle: "Willi",
-  description: "Hello, you may know me as Willi!",
-  ogDescription: "Hello, you may know me as Willi!"
-})
-
 const socials = [
   {
     href: "https://discord.com/users/263602820496883712",
