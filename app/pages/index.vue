@@ -34,28 +34,6 @@ const projects = [
   }
 ]
 
-const tools = [
-  {
-    name: "Movie Marathon Calculator",
-    icon: "zondicons:calculator",
-    size: "32",
-    href: "/tools/movie-marathon-calculator"
-  }
-]
-
-const friends = [
-  {
-    name: "Faaz",
-    href: "https://faaz.dev",
-    githubID: 70286349
-  },
-  {
-    name: "Dep",
-    href: "https://deprecating.xyz",
-    githubID: 70801324
-  }
-] satisfies Friend[]
-
 const {
   status,
   data: tracks,
@@ -69,22 +47,6 @@ useIntervalFn(refresh, 60_000)
 </script>
 
 <template>
-  <DevOnly>
-    <NavButton class="absolute mt-4 ml-4">
-      <Tooltip text="Movie Marathon Calculator">
-        <NuxtLink :to="tool.href" v-for="tool in tools" class="flex flex-col items-center justify-center py-2">
-          <Icon :name="tool.icon" class="opacity-50 invert transition-opacity hover:opacity-70" :size="tool.size" />
-        </NuxtLink>
-      </Tooltip>
-    </NavButton>
-  </DevOnly>
-
-  <Friends class="absolute top-4 right-4" :friends>
-    <NuxtLink to="https://leo.might-be.gay">
-      <NuxtImg src="/leo_88x31.png" style="image-rendering: crisp-edges" class="h-[31px] w-[88px]" />
-    </NuxtLink>
-  </Friends>
-
   <div class="bg-background flex min-h-screen w-screen justify-center pb-8 font-semibold text-white">
     <div class="flex flex-col">
       <div class="mt-32 flex flex-row justify-center">
