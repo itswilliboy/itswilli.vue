@@ -45,7 +45,6 @@ const checkIncludes = <T extends { name: string }>(one: T[], two: string): boole
             <div class="flex flex-row items-center justify-center gap-3">
               <NuxtImg src="/milo.jpg" alt="pfp" class="h-[60px] w-[60px] rounded-lg" />
               <h1 class="text-3xl font-semibold lg:text-6xl">My Songs</h1>
-              <span class="mt-10 -ml-2 hidden text-xs md:block">Powered by LastFM</span>
             </div>
           </a>
           <Button @click="refresh" :loading="status === 'pending'">Refresh</Button>
