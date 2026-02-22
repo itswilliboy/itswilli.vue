@@ -18,6 +18,10 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()]
   },
 
+  nitro: {
+    preset: "bun"
+  },
+
   image: {
     domains: ["https://lastfm.freetls.fastly.net"]
   },

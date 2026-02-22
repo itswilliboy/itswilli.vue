@@ -12,8 +12,8 @@
   "dependencies": {
     "@fontsource-variable/noto-sans-jp": "^5.2.9",
     "@highlightjs/vue-plugin": "^2.1.0",
-    "@nuxt/icon": "^1.15.0",
-    "@nuxt/image": "^1.11.0",
+    "@nuxt/icon": "^2.2.1",
+    "@nuxt/image": "^2.0.0",
     "@tailwindcss/vite": "^4.1.17",
     "baseline-browser-mapping": "^2.9.6",
     "caniuse-lite": "^1.0.30001760",
