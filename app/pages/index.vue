@@ -1,4 +1,8 @@
 <script setup lang="ts">
+useSeoMeta({
+  title: "itswilli"
+})
+
 const socials = [
   {
     href: "https://discord.com/users/263602820496883712",
@@ -89,7 +93,16 @@ useIntervalFn(refresh, 60_000)
     <div class="flex flex-col">
       <div class="mt-32 flex flex-row justify-center">
         <div class="flex flex-col justify-center">
-          <h2 class="text-md md:text-2xl">Hello, I am</h2>
+          <div class="flex justify-between">
+            <h2 class="text-md md:text-2xl">Hello, I am</h2>
+            <div class="flex items-center gap-1 pr-2 pb-1">
+              <div v-for="item in socials">
+                <a :href="item.href" target="_blank">
+                  <NuxtImg :src="item.icon" alt="Logo" class="h-5 w-5 opacity-65 transition-opacity hover:opacity-80" />
+                </a>
+              </div>
+            </div>
+          </div>
           <h1 class="text-primary h-32 text-[6rem] leading-[.7] font-bold md:text-[10rem]">Willi</h1>
         </div>
         <Tooltip text="Yes, it's my cat..." :delay="1000">
@@ -100,16 +113,6 @@ useIntervalFn(refresh, 60_000)
       <div class="mt-8 flex flex-col items-center justify-center gap-6">
         <Track :track="tracks![0]!" to-page v-if="status === 'success'" />
         <div v-else class="bg-light-bg h-28 w-72 animate-pulse rounded-lg"></div>
-        <div class="flex flex-row justify-center gap-8">
-          <div v-for="item in socials">
-            <a
-              :href="item.href"
-              target="_blank"
-              class="bg-primary hover:bg-primary/80 inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg p-4 transition-colors">
-              <NuxtImg :src="item.icon" alt="Logo" class="h-6 w-6" />
-            </a>
-          </div>
-        </div>
       </div>
 
       <div class="mt-8 flex flex-col items-center justify-center gap-4 overflow-y-auto lg:flex-row">

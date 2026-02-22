@@ -1,4 +1,8 @@
 <script setup lang="ts">
+useSeoMeta({
+  title: "itswilli - spotify"
+})
+
 const {
   status,
   data,
