@@ -12,6 +12,9 @@ const relativeTime = () => {
 }
 const relative = ref<string>(relativeTime() || "NOW")
 
+const imageUrl = track.image[2]!["#text"]
+const image = useImage()(imageUrl, { width: 128 })
+
 useIntervalFn(() => {
   if (isCurrent) return
   relative.value = relativeTime() as string
@@ -20,20 +23,14 @@ useIntervalFn(() => {
 
 <template>
   <NuxtLink :to="toPage ? '/spotify' : track.url" :target="toPage ? '' : '_blank'">
-    <div class="bg-light-bg relative h-28 w-72 rounded-lg transition-colors hover:bg-white/15">
+    <div class="relative h-28 w-72 rounded-lg transition-colors hover:bg-white/15" :style="`--img: url(${image})`">
       <ClientOnly>
         <p class="absolute right-0 mt-2 mr-3 font-bold text-white/50">{{ relative.replace("about", "") }}</p>
       </ClientOnly>
       <div class="flex h-full w-full items-center gap-4 px-4">
-        <NuxtImg
-          :placeholder="[80, 80, 15, 5]"
-          preload
-          :src="track.image[2]!['#text']"
-          class="rounded-lg"
-          width="80"
-          height="80" />
+        <NuxtImg :placeholder="[80, 80, 15, 5]" preload :src="imageUrl" class="rounded-lg" width="80" height="80" />
         <div class="flex flex-col justify-center">
-          <Tooltip :text="track.name">
+          <Tooltip :text="track.name" class="z-999">
             <h1 class="line-clamp-1 text-lg font-semibold break-all" :class="isTopTrack && 'top'">
               {{ track.name }}
             </h1>
@@ -49,12 +46,32 @@ useIntervalFn(() => {
 <style scoped>
 @reference "@/assets/css/main.css";
 
+a > div {
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 15%;
+    border-radius: var(--radius-lg);
+
+    background-image: var(--img);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    filter: blur(4px);
+    transform: scale(1.1);
+  }
+}
+
 .top {
   @apply bg-linear-to-r from-indigo-300 via-pink-300 to-indigo-300;
   font-weight: bold;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradient 20s ease infinite;
+  animation: gradient 10s ease infinite;
   background-size: 200%;
 }
 
