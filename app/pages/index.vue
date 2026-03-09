@@ -55,7 +55,7 @@ const friends = [
   },
   {
     name: "Dep",
-    href: "https://deprecating.xyz",
+    href: "https://deppie-dev.vercel.app/",
     githubID: 70801324
   }
 ] satisfies Friend[]
