@@ -65,7 +65,7 @@ export async function getSpotifyArtistImageFromName(name: string) {
   const artist = resp.artists?.items?.[1]
   if (!artist) return null
 
-  return artist.images[0].url
+  return artist.images[0].url || "https://itswilli.dev/milo.jpg"
 }
 
 export async function getSpotifyTrackImageFromSearch(name: string, artist: string): Promise<string> {
@@ -84,7 +84,7 @@ export async function getSpotifyTrackImageFromSearch(name: string, artist: strin
 
   if (items.length == 0) return ""
 
-  return items[0].album.images[1].url || ""
+  return items[0].album.images[1].url || "https://itswilli.dev/milo.jpg"
 }
 
 export async function getSpotifyArtistImageFromArtistID(id: string) {
