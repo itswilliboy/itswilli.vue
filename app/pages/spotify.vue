@@ -79,7 +79,7 @@ const refresh = async () => {
     <section>
       <div class="mb-4">
         <h1 class="text-3xl font-bold">Top Tracks</h1>
-        <h2 class="font-thin">one week</h2>
+        <h2 class="font-thin">one month</h2>
       </div>
       <div v-if="artistData" class="flex justify-evenly gap-4 overflow-x-scroll">
         <TopTrack :track="track" v-for="track in topTrackData" :key="track.name" />

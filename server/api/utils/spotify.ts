@@ -81,8 +81,6 @@ export async function getSpotifyTrackImageFromSearch(name: string, artist: strin
   })
 
   const items = resp.tracks.items as any[]
-  console.log("req", { query, name, artist })
-  console.log("response", { resp })
 
   if (items.length == 0) return ""
 
