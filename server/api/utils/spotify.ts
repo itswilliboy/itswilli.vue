@@ -63,7 +63,7 @@ export async function getSpotifyArtistImageFromName(name: string) {
   })
 
   const artist = resp.artists?.items?.[1]
-  if (!artist) return null
+  if (!artist) return "https://itswilli.dev/milo.jpg"
 
   return artist.images[0].url || "https://itswilli.dev/milo.jpg"
 }
@@ -82,7 +82,7 @@ export async function getSpotifyTrackImageFromSearch(name: string, artist: strin
 
   const items = resp.tracks.items as any[]
 
-  if (items.length == 0) return ""
+  if (items.length == 0) return "https://itswilli.dev/milo.jpg"
 
   return items[0].album.images[1].url || "https://itswilli.dev/milo.jpg"
 }
