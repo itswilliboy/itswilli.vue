@@ -1,44 +1,29 @@
 <script setup lang="ts">
-import { formatDistance } from "date-fns"
+const props = defineProps<{ artist: Artist }>()
+const artist = props.artist
 
-const props = defineProps<{ track: Track; toPage?: boolean }>()
-const track = props.track
-
-const isCurrent = Boolean(track.hasOwnProperty("@attr") && track["@attr"].nowplaying) ?? false
-const relativeTime = () => {
-  return !isCurrent && formatDistance(new Date(), new Date(Number(track.date.uts) * 1000)) + " ago"
-}
-const relative = ref<string>(relativeTime() || "NOW")
-
-const imageUrl = track.image[2]!["#text"]
+const imageUrl = artist.resolvedImage
 const image = useImage()(imageUrl, { width: 174 })
-
-useIntervalFn(() => {
-  if (isCurrent) return
-  relative.value = relativeTime() as string
-}, 60000)
 </script>
 
 <template>
-  <NuxtLink :to="toPage ? '/spotify' : track.url" :target="toPage ? '' : '_blank'">
+  <a :href="artist.url" target="_blank">
     <div class="relative h-28 w-72 rounded-lg transition-colors hover:bg-white/15" :style="`--img: url(${image})`">
-      <ClientOnly>
-        <p class="absolute right-0 mt-2 mr-3 font-bold text-white/50">{{ relative.replace("about", "") }}</p>
-      </ClientOnly>
+      <p class="absolute right-0 mt-2 mr-3 font-bold text-white/50">#{{ artist["@attr"].rank }}</p>
       <div class="flex h-full w-full items-center gap-4 px-4">
         <img :src="image" class="rounded-lg" width="80" height="80" />
         <div class="flex flex-col justify-center">
-          <Tooltip :text="track.name">
+          <Tooltip :text="artist.name">
             <h1 class="line-clamp-1 text-lg font-semibold break-all">
-              {{ track.name }}
+              {{ artist.name }}
             </h1>
           </Tooltip>
-          <h2 class="text-sm">{{ track.artist["#text"]?.replace("Lisa", "LiSA") }}</h2>
+          <h2 class="text-sm">{{ artist.playcount }} plays</h2>
           <!-- :^) -->
         </div>
       </div>
     </div>
-  </NuxtLink>
+  </a>
 </template>
 
 <style scoped>

@@ -38,15 +38,6 @@ const projects = [
   }
 ]
 
-const tools = [
-  {
-    name: "Movie Marathon Calculator",
-    icon: "zondicons:calculator",
-    size: "32",
-    href: "/tools/movie-marathon-calculator"
-  }
-]
-
 const friends = [
   {
     name: "Faaz",
@@ -64,7 +55,7 @@ const {
   status,
   data: tracks,
   refresh
-} = await useLazyFetch("/api/spotify", {
+} = await useLazyFetch("/api/tracks", {
   query: { limit: 1 },
   server: false
 })
@@ -73,16 +64,6 @@ useIntervalFn(refresh, 60_000)
 </script>
 
 <template>
-  <DevOnly>
-    <NavButton class="absolute mt-4 ml-4">
-      <Tooltip text="Movie Marathon Calculator">
-        <NuxtLink :to="tool.href" v-for="tool in tools" class="flex flex-col items-center justify-center py-2">
-          <Icon :name="tool.icon" class="opacity-50 invert transition-opacity hover:opacity-70" :size="tool.size" />
-        </NuxtLink>
-      </Tooltip>
-    </NavButton>
-  </DevOnly>
-
   <Friends class="absolute top-4 right-4" :friends>
     <NuxtLink to="https://leo.might-be.gay">
       <NuxtImg src="/leo_88x31.png" style="image-rendering: crisp-edges" class="h-[31px] w-[88px]" />

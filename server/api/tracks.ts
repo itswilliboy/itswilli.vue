@@ -9,7 +9,7 @@ const getRecentTracks = async (limit: number): Promise<Track[]> => {
   const resp = (await $fetch(URL)) as any
   const tracks = resp.recenttracks.track as Track[]
 
-  const maybeCurrent = tracks[0]
+  const maybeCurrent = tracks[0]!
   const isCurrent = Boolean(maybeCurrent.hasOwnProperty("@attr") && maybeCurrent["@attr"].nowplaying) ?? false
   if (isCurrent) {
     maybeCurrent.date = { uts: "0" } // i hate this api

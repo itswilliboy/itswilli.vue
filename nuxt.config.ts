@@ -9,6 +9,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     LAST_FM_TOKEN: "",
     TMDB_TOKEN: "",
+    SPOTIFY_CLIENT_ID: "",
+    SPOTIFY_CLIENT_SECRET: "",
     public: {
       LAST_FM_USERNAME: "ItsWilliboy"
     }
@@ -23,7 +25,7 @@ export default defineNuxtConfig({
   },
 
   image: {
-    domains: ["https://lastfm.freetls.fastly.net"]
+    domains: ["https://lastfm.freetls.fastly.net", "https://i.scdn.co"]
   },
 
   modules: ["@nuxt/image", "@nuxt/icon"],

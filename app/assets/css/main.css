@@ -8,4 +8,6 @@
   --color-accent: #1338f0;
   --color-light-bg: #1d2033;
   --default-font-family: "Noto Sans JP Variable", "sans-serif";
+
+  --breakpoint-3xl: 120rem;
 }

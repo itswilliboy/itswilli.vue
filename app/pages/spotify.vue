@@ -4,107 +4,123 @@ useSeoMeta({
 })
 
 const {
-  status,
-  data,
+  status: trackStatus,
+  data: trackData,
   refresh: refetch
-} = await useLazyFetch("/api/spotify", {
-  query: { limit: 48 },
+} = await useLazyFetch("/api/tracks", {
+  query: { limit: 30 },
   server: false
 })
 
-const { status: statusTop, data: tracksTop } = await useLazyFetch("/api/top", {
+const { status: topTrackStatus, data: topTrackData } = await useLazyFetch("/api/top/tracks", {
   query: { limit: 10 },
   server: false
 })
 
-const { data: topArtists } = await useLazyFetch("/api/gradient", { server: false })
+const { status: artistStatus, data: artistData } = await useLazyFetch("/api/top/artists", {
+  query: { limit: 10 },
+  server: false
+})
 
-const refresh = async () => {
-  if (!data.value) return
-
-  const currFirst = data.value[0]!
-  await refetch()
-  const newFirst = data.value[0]!
-
-  if (newFirst.date.uts === currFirst.date.uts && newFirst.name == currFirst.name) return
-  data.value = data.value.slice(0, 48)
+const getHyperlink = (track: Track): string => {
+  if (track.mbid == "") return track.url
+  return `https://musicbrainz.org/track/${track.mbid}`
 }
 
-const checkIncludes = <T extends { name: string }>(one: T[], two: string): boolean => {
-  return one.map(s => s.name.toLowerCase()).includes(two.toLowerCase())
+const refresh = async () => {
+  const data = trackData
+  if (!data.value) return
+
+  const prev = data.value
+  await refetch()
+  const next = data.value
+
+  const currFirst = prev[0]!
+  const newFirst = next[0]!
+  if (newFirst.date.uts === currFirst.date.uts && newFirst.name == currFirst.name) return
+
+  data.value = next
 }
 </script>
 
 <template>
-  <div class="bg-background backdrop flex min-h-screen flex-col gap-4 p-4 text-white">
-    <LinkButton to="/">Go Back</LinkButton>
-    <div class="flex h-full flex-col items-center justify-center gap-4 lg:flex-row">
-      <div class="flex h-200 w-75 flex-col lg:w-250">
-        <div class="flex h-16 flex-row items-center justify-between">
-          <a
-            :href="`https://last.fm/user/${$config.public.LAST_FM_USERNAME}`"
-            target="_blank"
-            class="w-max transition-colors hover:text-red-100"
-            title="Last FM">
-            <div class="flex flex-row items-center justify-center gap-3">
-              <NuxtImg src="/milo.jpg" alt="pfp" class="size-15 rounded-lg" />
-              <h1 class="text-3xl font-semibold lg:text-6xl">My Music</h1>
-            </div>
-          </a>
-          <ClientOnly>
-            <Button @click="refresh" :loading="status === 'pending'">Refresh</Button>
-          </ClientOnly>
-        </div>
-        <div class="my-4 w-full rounded-full border-2 border-white/50"></div>
-        <div class="flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
-          <ClientOnly>
-            <TransitionGroup
-              v-if="data"
-              name="list"
-              tag="ul"
-              class="relative flex flex-row flex-wrap justify-center gap-4 overflow-y-auto">
-              <li v-for="track in data" :key="`${track.name}-${track.date.uts}-${track.mbid}`">
-                <Track
-                  :track="track"
-                  :is-top-artist="checkIncludes(topArtists!, track.artist['#text']!)"
-                  :is-top-track="checkIncludes(tracksTop!, track.name)" />
-              </li>
-            </TransitionGroup>
-            <div v-else v-for="_ in 48" class="bg-light-bg h-28 w-72 animate-pulse rounded-lg"></div>
-          </ClientOnly>
-        </div>
-      </div>
+  <div class="bg-background flex min-h-screen flex-col justify-evenly gap-4 p-4 text-white">
+    <LinkButton to="/" class="absolute top-3 left-3">Go Back</LinkButton>
 
-      <div class="flex h-200 w-full flex-col items-center md:w-100">
-        <div class="flex h-16 flex-row items-center justify-between">
-          <div class="relative flex h-15 w-64 justify-center">
-            <h1 class="absolute bottom-0 float-right w-max text-3xl font-semibold md:text-4xl">Top Weekly</h1>
-          </div>
-        </div>
-        <div class="my-4 w-4/6 rounded-full border-2 border-white/50"></div>
-
-        <div class="flex flex-col justify-center gap-2">
-          <TopTrack v-for="track in tracksTop" :track="track" v-if="statusTop === 'success'" />
-          <div v-else v-for="_ in 10" class="bg-light-bg h-16 w-64 animate-pulse rounded-lg"></div>
-        </div>
+    <section>
+      <div class="mt-5 flex gap-1">
+        <h1 class="mb-4 text-3xl font-bold">Recent Tracks</h1>
+        <ClientOnly>
+          <Transition>
+            <button @click="refresh" class="hover:cursor-pointer">
+              <Icon
+                name="material-symbols:refresh-rounded"
+                size="28px"
+                class="mb-1.5 opacity-75"
+                :class="trackStatus == 'pending' && 'animate-spin'" />
+            </button>
+          </Transition>
+        </ClientOnly>
       </div>
-    </div>
+      <TransitionGroup
+        v-if="trackData"
+        name="list"
+        tag="ul"
+        class="grid auto-cols-max grid-flow-col grid-rows-1 justify-evenly gap-4 overflow-x-scroll md:grid-rows-2 lg:grid-rows-3">
+        <Track :track="track" v-for="track in trackData" :key="`${track.name}:${track.date.uts}`" />
+      </TransitionGroup>
+      <div
+        v-else
+        class="grid auto-cols-max grid-flow-col grid-rows-1 justify-evenly gap-4 overflow-x-scroll whitespace-nowrap md:grid-rows-2 lg:grid-rows-3">
+        <div v-for="_ in 30" class="h-28 w-72 shrink-0 animate-pulse rounded-lg bg-white/10" />
+      </div>
+    </section>
+
+    <section>
+      <div class="mb-4">
+        <h1 class="text-3xl font-bold">Top Tracks</h1>
+        <h2 class="font-thin">one week</h2>
+      </div>
+      <div v-if="artistData" class="flex justify-evenly gap-4 overflow-x-scroll">
+        <TopTrack :track="track" v-for="track in topTrackData" :key="track.name" />
+      </div>
+      <div v-else class="flex justify-evenly gap-4 overflow-x-scroll whitespace-nowrap">
+        <div v-for="_ in 10" class="h-28 w-72 shrink-0 animate-pulse rounded-lg bg-white/10" />
+      </div>
+    </section>
+
+    <section>
+      <div class="mb-4">
+        <h1 class="text-3xl font-bold">Top Artists</h1>
+        <h2 class="font-thin">one month</h2>
+      </div>
+      <div v-if="artistData" class="flex justify-evenly gap-4 overflow-x-scroll">
+        <Artist :artist="artist" v-for="artist in artistData" :key="artist.name" />
+      </div>
+      <div v-else class="flex justify-evenly gap-4 overflow-x-scroll whitespace-nowrap">
+        <div v-for="_ in 10" class="h-28 w-72 shrink-0 animate-pulse rounded-lg bg-white/10" />
+      </div>
+    </section>
   </div>
 </template>
 
 <style scoped>
 .list-move,
-.list-enter-active {
-  transition: all 1s ease;
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
 }
+
 .list-enter-from {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateX(-30px);
 }
+
 .list-leave-to {
   transition: none;
   opacity: 0;
 }
+
 .list-leave-active {
   position: absolute;
 }
